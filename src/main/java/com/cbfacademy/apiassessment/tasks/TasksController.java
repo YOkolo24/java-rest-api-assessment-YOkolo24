@@ -2,7 +2,6 @@ package com.cbfacademy.apiassessment.tasks;
 
 import java.util.ArrayList;
 import java.util.List;
-//import java.util.Comparator;
 
 import org.springframework.web.bind.annotation.*; 
 
@@ -12,8 +11,13 @@ public class TasksController {
     
     private final List<Tasks> tasks = new ArrayList<>();
 
-    @GetMapping(value = "/tasks", produces = "List of active tasks")
+    // @GetMapping("/tasks")
+	// public String tasks() {
+	// 	return String.format("Service running successfully ");
+	// }
+
+    @GetMapping(value = "/tasks")
     public List<Tasks> getAllTasks() {
-        return Arrays.asList();
+        return tasks;
     }
 }
