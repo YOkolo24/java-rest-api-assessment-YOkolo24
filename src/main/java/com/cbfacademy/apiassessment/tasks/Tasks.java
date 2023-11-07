@@ -1,20 +1,16 @@
 package com.cbfacademy.apiassessment.tasks;
 
-import java.time.Instant;
-
 public class Tasks {
 
     private long id;
     private String taskDetails;
     private boolean isCompleted;
-    private Instant date;
     
-    public Tasks(long id, String taskDetails, boolean isCompleted, Instant dateTime) {
+    public Tasks(long id, String taskDetails, boolean isCompleted) {
 
         this.id = id;
         this.taskDetails = taskDetails;
         this.isCompleted = isCompleted;
-        this.date = dateTime;
     }
 
     public long getId() {
@@ -40,13 +36,4 @@ public class Tasks {
     public void setCompleted(boolean isCompleted) {
         this.isCompleted = isCompleted;
     }
-
-    public Instant getDate() {
-        return date;
-    }
-
-    public void setDate(Instant date) {
-        this.date = date;
-    }
-
 }
