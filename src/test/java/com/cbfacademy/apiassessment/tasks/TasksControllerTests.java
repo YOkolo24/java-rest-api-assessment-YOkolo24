@@ -47,7 +47,7 @@ public class TasksControllerTests {
 
     @Test
 	public void testCreateTasks() {
-		Tasks task = new Tasks(2, "Pull all changes from GitHub", false);
+		Tasks task = new Tasks(2L, "Pull all changes from GitHub", false);
 		ResponseEntity<Tasks> response = restTemplate.postForEntity("/tasks/", task, Tasks.class);
 
 		assertEquals(HttpStatus.OK, response.getStatusCode());
@@ -59,12 +59,12 @@ public class TasksControllerTests {
 	public void testGetAllTasks() {
 		List<Tasks> tasks = new ArrayList<>() {
 			{
-				add(new Tasks(2, "Pull all changes from GitHub", false));
-				add(new Tasks(3, "Work on debugging for Project 3", false));
-				add(new Tasks(1, "Complete testing for Project 1", true));
+				add(new Tasks(2L, "Pull all changes from GitHub", false));
+				add(new Tasks(3L, "Work on debugging for Project 3", false));
+				add(new Tasks(1L, "Complete testing for Project 1", true));
 			}
 		};
-        
+
 		for (Tasks task : tasks) {
 			restTemplate.postForEntity("/tasks/", task, Tasks.class);
 		}

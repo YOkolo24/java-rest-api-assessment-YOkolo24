@@ -2,22 +2,22 @@ package com.cbfacademy.apiassessment.tasks;
 
 public class Tasks {
 
-    private long id;
+    private Long id;
     private String taskDetails;
     private boolean isCompleted;
     
-    public Tasks(long id, String taskDetails, boolean isCompleted) {
+    public Tasks(Long id, String taskDetails, boolean isCompleted) {
 
         this.id = id;
         this.taskDetails = taskDetails;
         this.isCompleted = isCompleted;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
