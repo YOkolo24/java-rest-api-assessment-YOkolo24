@@ -1,6 +1,4 @@
-{
-    "task": [
-
+ [
         {
             "id": "1",
             "taskDetails":  "Complete all of this weeks active tasks.",
@@ -24,5 +22,4 @@
             "taskDetails":  "Complete review of updated code for Project 4.",
             "isCompleted": "false"
         }
-    ]
-}
+]
