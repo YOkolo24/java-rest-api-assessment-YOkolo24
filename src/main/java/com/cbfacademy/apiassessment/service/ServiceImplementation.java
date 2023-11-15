@@ -20,12 +20,13 @@ public class ServiceImplementation implements TasksService {
 
     @Override
     public ResponsesModel createTask(Tasks tasks) {
+        
         ResponsesModel responsesModel = new ResponsesModel();
 
         List<Tasks> tasksData = readJsonFile();
         Tasks taskPresent = null;
 
-        if(tasksData != null) {
+        if(tasksData != null) 
             taskPresent = tasksData.parallelStream().filter(emp -> emp.getId().equals(tasks.getId())).findAny().orElse(null);
         else 
             tasksData = new ArrayList<>();
@@ -37,7 +38,7 @@ public class ServiceImplementation implements TasksService {
 
             if (status) {
                 responsesModel.setStatus(Responses.success);
-                responseModel.setData(Responses.taskAdded);
+                responsesModel.setData(Responses.taskAdded);
             }
         }
         else {
@@ -76,6 +77,5 @@ public class ServiceImplementation implements TasksService {
         return status;
     }
     
-    }
-
 }
+
