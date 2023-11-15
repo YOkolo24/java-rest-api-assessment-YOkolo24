@@ -5,12 +5,15 @@ public class Tasks {
     private Integer id;
     private String taskDetails;
     private boolean isCompleted;
+    private Integer priorityScoreOutOfFive;
     
-    public Tasks(Integer id, String taskDetails, boolean isCompleted) {
+    public Tasks(Integer id, String taskDetails, Integer priorityScoreOutOfFive, boolean isCompleted) {
 
         this.id = id;
         this.taskDetails = taskDetails;
+        this.priorityScoreOutOfFive = priorityScoreOutOfFive;
         this.isCompleted = isCompleted;
+    
     }
 
     public Integer getId() {
@@ -28,6 +31,13 @@ public class Tasks {
     public void setTaskDetails(String taskDetails) {
         this.taskDetails = taskDetails;
     }
+    public Integer getPriorityScoreOutOfFive() {
+        return priorityScoreOutOfFive;
+    }
+
+    public void setPriorityScoreOutOfFive(Integer priorityScoreOutOfFive) {
+        this.priorityScoreOutOfFive = priorityScoreOutOfFive;
+    }
 
     public boolean isCompleted() {
         return isCompleted;
@@ -36,4 +46,5 @@ public class Tasks {
     public void setCompleted(boolean isCompleted) {
         this.isCompleted = isCompleted;
     }
+ 
 }

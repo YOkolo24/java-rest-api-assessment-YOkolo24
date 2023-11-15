@@ -10,6 +10,8 @@ import org.springframework.context.annotation.Description;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import com.cbfacademy.apiassessment.controller.TasksController;
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,9 +51,9 @@ public class TasksControllerTests {
 	public void testGetAllTasks() {
 		List<Tasks> tasks = new ArrayList<>() {
 			{
-				add(new Tasks(2, "Pull all changes from GitHub", false));
-				add(new Tasks(3, "Work on debugging for Project 3", false));
-				add(new Tasks(1, "Complete testing for Project 1", true));
+				add(new Tasks(2, "Pull all changes from GitHub", false, 2));
+				add(new Tasks(3, "Work on debugging for Project 3", false, 5));
+				add(new Tasks(1, "Complete testing for Project 1", true, 3));
 			}
 		};
 
@@ -69,7 +71,7 @@ public class TasksControllerTests {
     
     @Test
 	public void testGetTaskById() {
-		Tasks task = new Tasks(2, "Pull all changes from GitHub", false);
+		Tasks task = new Tasks(2, "Pull all changes from GitHub", false, 2);
 		ResponseEntity<Tasks> createResponse = restTemplate.postForEntity("/tasks/", task, Tasks.class);
 
 		Tasks createdTask = createResponse.getBody();
@@ -82,7 +84,7 @@ public class TasksControllerTests {
 
     @Test
 	public void testCreateTask() {
-		Tasks task = new Tasks(2, "Pull all changes from GitHub", false);
+		Tasks task = new Tasks(2, "Pull all changes from GitHub", false, 2);
 		ResponseEntity<Tasks> response = restTemplate.postForEntity("/tasks/", task, Tasks.class);
 
 		assertEquals(HttpStatus.OK, response.getStatusCode());
@@ -92,7 +94,7 @@ public class TasksControllerTests {
 
     @Test
 	public void testUpdateTasks() {
-		Tasks task = new Tasks(2, "Pull changes from GitHub", false);
+		Tasks task = new Tasks(2, "Pull changes from GitHub", false, 2);
 		ResponseEntity<Tasks> createResponse = restTemplate.postForEntity("/tasks/", task, Tasks.class);
 
 		Tasks createdTask = createResponse.getBody();
@@ -108,7 +110,7 @@ public class TasksControllerTests {
 
     @Test
 	public void testDeleteTask() {
-		Tasks task = new Tasks(2, "Pull changes from GitHub", false);
+		Tasks task = new Tasks(2, "Pull changes from GitHub", false, 2 );
 		ResponseEntity<Tasks> createResponse = restTemplate.postForEntity("/tasks/", task, Tasks.class);
 
 		Tasks createdTask = createResponse.getBody();
