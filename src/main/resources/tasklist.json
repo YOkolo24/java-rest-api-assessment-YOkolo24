@@ -2,24 +2,28 @@
         {
             "id": "1",
             "taskDetails":  "Complete all of this weeks active tasks.",
-            "isCompleted": "false"
+            "isCompleted": "false",
+            "priorityScoreOutOfFive": "3"
         },
 
         {
             "id": "2",
             "taskDetails":  "Meet with my manager for financial mid-year review.",
-            "isCompleted": "false"
+            "isCompleted": "false",
+            "priorityScoreOutOfFive": "2"
         },
 
         {
             "id": "3",
             "taskDetails":  "Complete debugging of Project 7.",
-            "isCompleted": "true"
+            "isCompleted": "true",
+            "priorityScoreOutOfFive": "3"
         },
 
         {
             "id": "4",
             "taskDetails":  "Complete review of updated code for Project 4.",
-            "isCompleted": "false"
+            "isCompleted": "false",
+            "priorityScoreOutOfFive": "5"
         }
 ]
