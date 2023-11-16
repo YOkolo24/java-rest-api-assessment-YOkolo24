@@ -1,10 +1,12 @@
 package com.cbfacademy.apiassessment.controller;
 
+import java.time.Instant;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import com.cbfacademy.apiassessment.service.ResponsesModel;
 import com.cbfacademy.apiassessment.service.TasksService;
-import com.cbfacademy.apiassessment.tasks.ResponsesModel;
 import com.cbfacademy.apiassessment.tasks.Tasks; 
 
 @RestController
@@ -18,14 +20,34 @@ public class TasksController {
     public ResponsesModel createTask(@RequestBody Tasks tasks) {
         return tasksService.createTask(tasks);
     }
+
+    @GetMapping("/all")
+    public ResponsesModel getAllTasks() {
+        return tasksService.getAllTasks();
+    }
+
+    @GetMapping("/{id}")
+    public ResponsesModel getTaskById(@PathVariable Integer id) {
+        return tasksService.getTaskById(id);
+    }
+
+    @PutMapping("/{id}")
+    public ResponsesModel updateTask(@RequestBody Tasks tasks) {
+        return tasksService.updateTask(tasks);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponsesModel deleteTask(@PathVariable Integer id) {
+        return tasksService.deleteTask(id);
+    }
     
     // private final List<Tasks> tasks = new ArrayList<>();
 
-    // // Confirmation system is running as expected
-    // @GetMapping("/ping")
-	// public String ping() {
-	// 	return String.format("Service running successfully " + Instant.now().toString());
-	// }
+    // Confirmation system is running as expected
+    @GetMapping("/ping")
+	public String ping() {
+		return String.format("Service running successfully " + Instant.now().toString());
+	}
 
     // // Display all existing tasks 
     // @GetMapping(value = "/")

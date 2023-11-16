@@ -1,4 +1,4 @@
-package com.cbfacademy.apiassessment.tasks;
+package com.cbfacademy.apiassessment.service;
 
 public class Responses {
     
