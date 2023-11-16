@@ -9,8 +9,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.cbfacademy.apiassessment.tasks.Responses;
-import com.cbfacademy.apiassessment.tasks.ResponsesModel;
 import com.cbfacademy.apiassessment.tasks.Tasks;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -75,6 +73,70 @@ public class ServiceImplementation implements TasksService {
         }
 
         return status;
+    }
+
+    @Override
+    public ResponsesModel getAllTasks() {
+        
+        ResponsesModel responsesModel = new ResponsesModel();
+        
+        List<Tasks> tasksData = readJsonFile();
+        responsesModel.setStatus(Responses.success);
+        responsesModel.setData(tasksData);
+
+        return responsesModel;
+    }
+
+    @Override
+    public ResponsesModel getTaskById(Integer id) {
+       ResponsesModel responsesModel = new ResponsesModel();
+
+       List<Tasks> tasksData = readJsonFile();
+       Tasks tasks = tasksData.parallelStream().filter(emp -> emp.getId().equals(id)).findAny().orElse(null);
+
+       if(tasks != null) {
+        responsesModel.setStatus(Responses.success);
+        responsesModel.setData(tasks);
+       }
+       else {
+        responsesModel.setStatus(Responses.success);
+        responsesModel.setData(Responses.taskNotFound);
+       }
+       return responsesModel;
+    }
+
+    @Override
+    public ResponsesModel updateTask(Tasks tasks) {
+       ResponsesModel responsesModel = new ResponsesModel();
+
+       List<Tasks> tasksData = readJsonFile();
+       tasksData.removeIf(emp -> emp.getId().equals(tasks.getId()));
+       tasksData.add(tasks);
+
+       boolean status = writeToJsonFile(tasksData);
+
+       if(status) {
+        responsesModel.setStatus(Responses.success);
+        responsesModel.setData(Responses.taskDetailsUpdated);
+       }
+       return responsesModel;
+    }
+    
+
+    @Override
+    public ResponsesModel deleteTask(Integer id) {
+        ResponsesModel responsesModel = new ResponsesModel();
+
+       List<Tasks> tasksData = readJsonFile();
+       tasksData.removeIf(emp -> emp.getId().equals(id));
+
+       boolean status = writeToJsonFile(tasksData);
+
+       if(status) {
+        responsesModel.setStatus(Responses.success);
+        responsesModel.setData(Responses.taskDeleted);
+       }
+       return responsesModel;
     }
     
 }

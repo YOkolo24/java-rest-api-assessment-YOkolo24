@@ -13,13 +13,12 @@ public class Tasks {
         this.taskDetails = taskDetails;
         this.priorityScoreOutOfFive = priorityScoreOutOfFive;
         this.isCompleted = isCompleted;
-    
     }
 
     public Integer getId() {
         return id;
     }
-
+    
     public void setId(Integer id) {
         this.id = id;
     }
