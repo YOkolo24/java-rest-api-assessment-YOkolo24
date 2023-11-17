@@ -16,79 +16,46 @@ public class TasksController {
     @Autowired
     TasksService tasksService;
 
-    @PostMapping("/")
-    public ResponsesModel createTask(@RequestBody Tasks tasks) {
-        return tasksService.createTask(tasks);
-    }
-
-    @GetMapping("/all")
-    public ResponsesModel getAllTasks() {
-        return tasksService.getAllTasks();
-    }
-
-    @GetMapping("/{id}")
-    public ResponsesModel getTaskById(@PathVariable Integer id) {
-        return tasksService.getTaskById(id);
-    }
-
-    @PutMapping("/{id}")
-    public ResponsesModel updateTask(@RequestBody Tasks tasks) {
-        return tasksService.updateTask(tasks);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponsesModel deleteTask(@PathVariable Integer id) {
-        return tasksService.deleteTask(id);
-    }
-    
-    // private final List<Tasks> tasks = new ArrayList<>();
-
-    // Confirmation system is running as expected
+    // Example test endpoint
     @GetMapping("/ping")
 	public String ping() {
 		return String.format("Service running successfully " + Instant.now().toString());
 	}
 
-    // // Display all existing tasks 
-    // @GetMapping(value = "/")
-    // public List<Tasks> getAllTasks() {
-    //     return tasks;
-    // }
+    // Create new task endpoint
+    @PostMapping("/")
+    public ResponsesModel createTask(@RequestBody Tasks tasks) {
+        return tasksService.createTask(tasks);
+    }
 
-    // // Return specific task by ID
-    // @GetMapping(value = "/{id}")
-    // public ResponseEntity<Tasks> getTaskById(@PathVariable Integer id) {
-    //     for (Tasks task : tasks) {
-    //         if (task.getId().equals(id)) {
-    //             return ResponseEntity.ok(task);
-    //         }
-    //     }
-    //     return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-    // }
+    // Display all existing tasks endpoint
+    @GetMapping("/all")
+    public ResponsesModel getAllTasks() {
+        return tasksService.getAllTasks();
+    }
 
-    // // Create new task
-    // @PostMapping(value = "/")
-    // public Tasks createTask(@RequestBody Tasks task) {
-    //     tasks.add(task);
-    //     return task;
-    // }
+    // Return specific task by ID endpoint
+    @GetMapping("/{id}")
+    public ResponsesModel getTaskById(@PathVariable Integer id) {
+        return tasksService.getTaskById(id);
+    }
 
-    // // Update an existing task by ID
-    // @PutMapping("/{id}")
-    // public Tasks updateTask(@PathVariable Integer id, @RequestBody Tasks updatedTask) {
-    //     for (Tasks task : tasks) {
-    //         if (task.getId().equals(id)) {
-    //             task.setTaskDetails(updatedTask.getTaskDetails());
-    //             task.setCompleted(updatedTask.isCompleted());
-    //             return task;
-    //         }
-    //     }
-    //     return null;
-    // }
+    // Update an existing task by ID endpoint
+    @PutMapping("/{id}")
+    public ResponsesModel updateTask(@RequestBody Tasks tasks) {
+        return tasksService.updateTask(tasks);
+    }
 
-    // // Delete a specific task by ID
-    // @DeleteMapping("/{id}")
-    // public void deleteTask(@PathVariable Integer id) {
-    //     tasks.removeIf(task -> task.getId().equals(id));
-    // }
+    // Delete a specific task by ID
+    @DeleteMapping("/{id}")
+    public ResponsesModel deleteTask(@PathVariable Integer id) {
+        return tasksService.deleteTask(id);
+    }
+
+    //Search for task by priority score endpoint
+    @GetMapping("/priority/{priorityScoreOutOfFive}")
+    public ResponsesModel searchForTaskByPriorityScore(@PathVariable Integer priorityScoreOutOfFive) {
+        return tasksService.searchForTaskByPriorityScore(priorityScoreOutOfFive);
+    }
+    
 }

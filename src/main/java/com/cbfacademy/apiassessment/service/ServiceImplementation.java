@@ -16,37 +16,7 @@ import com.google.gson.reflect.TypeToken;
 @Service
 public class ServiceImplementation implements TasksService {
 
-    @Override
-    public ResponsesModel createTask(Tasks tasks) {
-        
-        ResponsesModel responsesModel = new ResponsesModel();
-
-        List<Tasks> tasksData = readJsonFile();
-        Tasks taskPresent = null;
-
-        if(tasksData != null) 
-            taskPresent = tasksData.parallelStream().filter(emp -> emp.getId().equals(tasks.getId())).findAny().orElse(null);
-        else 
-            tasksData = new ArrayList<>();
-
-        if(taskPresent == null) {
-            tasksData.add(tasks);
-
-            boolean status = writeToJsonFile(tasksData);
-
-            if (status) {
-                responsesModel.setStatus(Responses.success);
-                responsesModel.setData(Responses.taskAdded);
-            }
-        }
-        else {
-            responsesModel.setData(Responses.taskAlreadyPresent);
-        }
-
-        return responsesModel;
-    }
-    
-    public List<Tasks> readJsonFile() {
+      public List<Tasks> readJsonFile() {
         List<Tasks> tasks = new ArrayList<>();
 
         try {
@@ -76,6 +46,37 @@ public class ServiceImplementation implements TasksService {
     }
 
     @Override
+    public ResponsesModel createTask(Tasks tasks) {
+        
+        ResponsesModel responsesModel = new ResponsesModel();
+
+        List<Tasks> tasksData = readJsonFile();
+        Tasks taskPresent = null;
+
+        if(tasksData != null) 
+            taskPresent = tasksData.parallelStream().filter(emp -> emp.getId().equals(tasks.getId())).findAny().orElse(null);
+        else 
+            tasksData = new ArrayList<>();
+
+        if(taskPresent == null) {
+            tasksData.add(tasks);
+
+            boolean status = writeToJsonFile(tasksData);
+
+            if (status) {
+                responsesModel.setStatus(Responses.success);
+                responsesModel.setData(Responses.taskAdded);
+            }
+        }
+        else {
+            responsesModel.setStatus(Responses.fail);
+            responsesModel.setData(Responses.taskAlreadyPresent);
+        }
+
+        return responsesModel;
+    }
+
+    @Override
     public ResponsesModel getAllTasks() {
         
         ResponsesModel responsesModel = new ResponsesModel();
@@ -99,7 +100,7 @@ public class ServiceImplementation implements TasksService {
         responsesModel.setData(tasks);
        }
        else {
-        responsesModel.setStatus(Responses.success);
+        responsesModel.setStatus(Responses.fail);
         responsesModel.setData(Responses.taskNotFound);
        }
        return responsesModel;
@@ -135,6 +136,24 @@ public class ServiceImplementation implements TasksService {
        if(status) {
         responsesModel.setStatus(Responses.success);
         responsesModel.setData(Responses.taskDeleted);
+       }
+       return responsesModel;
+    }
+
+    @Override
+    public ResponsesModel searchForTaskByPriorityScore(Integer priorityScoreOutOfFive) {
+        ResponsesModel responsesModel = new ResponsesModel();
+
+        List<Tasks> tasksData = readJsonFile();
+        Tasks tasks = tasksData.parallelStream().filter(emp -> emp.getId().equals(priorityScoreOutOfFive)).findAny().orElse(null);
+
+       if(tasks != null) {
+        responsesModel.setStatus(Responses.success);
+        responsesModel.setData(tasks);
+       }
+       else {
+        responsesModel.setStatus(Responses.fail);
+        responsesModel.setData(Responses.taskNotFound);
        }
        return responsesModel;
     }

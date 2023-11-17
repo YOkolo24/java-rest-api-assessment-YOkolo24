@@ -13,5 +13,7 @@ public interface TasksService {
     ResponsesModel updateTask(Tasks tasks);
 
     ResponsesModel deleteTask(Integer id);
+
+    ResponsesModel searchForTaskByPriorityScore(Integer priorityScoreOutOfFive);
     
 }
