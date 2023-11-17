@@ -15,10 +15,11 @@ public class Tasks {
         this.isCompleted = isCompleted;
     }
 
+    //All getters and setters
     public Integer getId() {
         return id;
     }
-    
+
     public void setId(Integer id) {
         this.id = id;
     }
