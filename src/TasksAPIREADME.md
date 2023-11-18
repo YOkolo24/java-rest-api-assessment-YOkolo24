@@ -3,7 +3,7 @@
 ## **Introduction**
 Due to my love for all things organised, I've created a very simple 'Tasks' REST-API utilising Java and SpringBoot. 
 
-Through this API you can create tasks, read all the tasks added, update tasks, and delete tasks. There are also some basics searches you can complete - such as finding a task by it's ID or by it's priority score. This API acts as a basic foundation upon which an even more complex Tasks API can be built. Further additions added to the present code can add other useful functions for the API.
+Through this API you can create tasks, read all the tasks added, update tasks, and delete tasks. There are also some simple searches you can complete - such as finding a task by it's ID or by it's priority score. This API acts as a basic foundation upon which an even more complex Tasks REST-API can be built. Further additions added to the present code can add other useful functions for the API.
 
 ---
 
@@ -126,21 +126,30 @@ You should see console output similar to the following (press `Ctrl + C` to exit
 2023-10-03T17:17:34.911+01:00  INFO 35536 --- [  restartedMain] com.cbfacademy.apiassessment.App         : Started App in 0.643 seconds (process running for 0.786)
 ```
 
-Open and use POSTMAN to test out the API by first opening a tab, choosing the required method, and entering `http://localhost:8080` with the required endpoint (see below for more details on this). You can also open your browser and navigate to `http://localhost:8080` and test some of the endpoints from here.
+Open and use POSTMAN to test out the API by first opening a tab, choosing the required method, and entering `http://localhost:8080`, with the required endpoint (see below for more details on this). You can also open your browser and navigate to `http://localhost:8080` and test some of the endpoints from here.
 
 
 ## **API Endpoints**
 
-In this REST-API, the methods (or request types) have been leveraged to support basic CRUD (**Create**, **Read**, **Update**, and **Delete**) operations. Please see below the various methods and endpoints implemented into the API and the expected responses:
+In this REST-API, the methods (request types) have been leveraged to support basic CRUD (**Create**, **Read**, **Update**, and **Delete**) operations. This API also utilises [Gson](https://github.com/google/gson) to manipulate JSON. Please find below the various methods and endpoints implemented into the API and the expected responses:
 
+#### Create a new task: Method = POST, endpoint = '/tasks/'
+This method and end point will allow you to create a new task with an ID, details of the task, a priority score out of 5 and answer whether the task is completed or not (true or false). The API will return a status message of 'success' and a data response confirming the task has been added successfully. If a task is added with and ID that has already been used, the task won't be created and the API will return a 'fail' status and let you know the task ID is already present.
 
+#### Display all active tasks: Method = GET, endpoint = '/tasks/all'
+This method and end point will display all active tasks in the API. The API will return a status message of 'success' and list of all the details of the tasks present in the API.
 
-## FAQs
+#### Get a specific task by its ID: Method = GET, endpoint = '/tasks/{id}'
+This method and end point will allow you to display the details of a task with a specific ID. The API will give a status message of 'success' if the ID specified is found, and display details of the task requested. If an ID is requested that isn't present, the API will return a 'fail' status and let you know the task hasn't been found.
 
-- Q: How can I process JSON in Java?
-    
-    A: There are a number of open-source packages that you can use to manipulate JSON. We recommend [Gson](https://github.com/google/gson), but you can also investigate alternatives like [json-simple](https://github.com/cliftonlabs/json-simple) or [Jackson](https://github.com/FasterXML/jackson-databind/).
+#### Get a specific task by its ID: Method = GET, endpoint = '/tasks/{id}'
+This method and end point will allow you to display the details of a task with a specific ID. The API will give a status message of 'success' if the ID specified is found, and display details of the task requested. If an ID is requested that isn't present, the API will return a 'fail' status and let you know the task hasn't been found.
 
-- Q: Can I use another IDE I'm more familiar with instead of VS Code, like IntelliJ or Eclipse?
+#### Get a specific task by its priority score: Method = GET, endpoint = '/tasks/priority/{priorityScoreOutOfFive}'
+This method and end point will allow you to display the details of a task with a specific priority score. The API will give a status message of 'success' if the priority score specified is found, and display details of the task requested. If a priority score is requested that isn't present, the API will return a 'fail' status and let you know the task with that priority score hasn't been found.
 
-    A: You can if you wish - this API has been created using VS Code.
+#### Update the details of a specific task by its ID: Method = PUT, endpoint = '/tasks/{id}'
+This method and end point will allow you to update the details of a task with a specific ID. The API will give a status message of 'success' if the ID specified is found, and display details of the task requested with the updated information included.
+
+#### Update the details of a specific task by its ID: Method = PUT, endpoint = '/tasks/{id}'
+This method and end point will allow you to delete the details of a task with a specific ID. The API will give a status message of 'success' if the ID specified is found, and a data response confirming the task has been deleted successfully.
