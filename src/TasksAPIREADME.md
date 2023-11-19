@@ -131,7 +131,7 @@ Open and use POSTMAN to test out the API by first opening a tab, choosing the re
 
 ## **API Endpoints**
 
-In this REST-API, the methods (request types) have been leveraged to support basic CRUD (**Create**, **Read**, **Update**, and **Delete**) operations. This API also utilises [Gson](https://github.com/google/gson) to manipulate JSON. Please find below the various methods and endpoints implemented into the API and the expected responses:
+In this REST-API, the methods (request types) have been leveraged to support basic CRUD (**Create**, **Read**, **Update**, and **Delete**) operations. This API also utilises [Gson](https://github.com/google/gson) to manipulate JSON. Below are the various methods and endpoints implemented into the API and the expected responses:
 
 #### Create a new task: Method = POST, endpoint = '/tasks/'
 This method and end point will allow you to create a new task with an ID, details of the task, a priority score out of 5 and answer whether the task is completed or not (true or false). The API will return a status message of 'success' and a data response confirming the task has been added successfully. If a task is added with and ID that has already been used, the task won't be created and the API will return a 'fail' status and let you know the task ID is already present.
@@ -142,14 +142,11 @@ This method and end point will display all active tasks in the API. The API will
 #### Get a specific task by its ID: Method = GET, endpoint = '/tasks/{id}'
 This method and end point will allow you to display the details of a task with a specific ID. The API will give a status message of 'success' if the ID specified is found, and display details of the task requested. If an ID is requested that isn't present, the API will return a 'fail' status and let you know the task hasn't been found.
 
-#### Get a specific task by its ID: Method = GET, endpoint = '/tasks/{id}'
-This method and end point will allow you to display the details of a task with a specific ID. The API will give a status message of 'success' if the ID specified is found, and display details of the task requested. If an ID is requested that isn't present, the API will return a 'fail' status and let you know the task hasn't been found.
-
 #### Get a specific task by its priority score: Method = GET, endpoint = '/tasks/priority/{priorityScoreOutOfFive}'
 This method and end point will allow you to display the details of a task with a specific priority score. The API will give a status message of 'success' if the priority score specified is found, and display details of the task requested. If a priority score is requested that isn't present, the API will return a 'fail' status and let you know the task with that priority score hasn't been found.
 
 #### Update the details of a specific task by its ID: Method = PUT, endpoint = '/tasks/{id}'
 This method and end point will allow you to update the details of a task with a specific ID. The API will give a status message of 'success' if the ID specified is found, and display details of the task requested with the updated information included.
 
-#### Update the details of a specific task by its ID: Method = PUT, endpoint = '/tasks/{id}'
+#### Update the details of a specific task by its ID: Method = DELETE, endpoint = '/tasks/{id}'
 This method and end point will allow you to delete the details of a task with a specific ID. The API will give a status message of 'success' if the ID specified is found, and a data response confirming the task has been deleted successfully.
